@@ -1,0 +1,22 @@
+<div class="row col-12">
+  <div class="col-2 pt-5">
+    <button id = "All" (click)= "getFigures($event)"class=" col-6 mx-auto my-3 btn btn-primary">All</button>
+    <button id = "Marvel" (click)= "getFigures($event)"class=" col-6 mx-auto my-3 btn btn-primary">Marvel</button>
+    <button id = "Lord of the rings" (click)= "getFigures($event)" class=" col-12 mx-auto my-3 btn btn-primary">Lord of the rings</button>
+    <button id = "Disney" (click)= "getFigures($event)"class=" col-6 mx-auto my-3 btn btn-primary">Disney</button>
+    
+  </div>
+
+  <div class="row col-9 mx-auto mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let figures of figures">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title" name = "name">{{figures.nom}}</h5>
+          <img style="width: 150px" src="{{figures.picture}}" alt="{{figures.nom}}">
+          <p class="card-text">{{figures.univers}}</p><p class="card-text">{{figures.price}}$</p>
+          <button (click)= "addFigure(figures.nom)"class="btn btn-primary">Add to collection</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

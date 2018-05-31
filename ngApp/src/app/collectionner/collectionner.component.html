@@ -1,0 +1,13 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let figures of collec">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">{{figures.nom}}</h5>
+          <img style="width: 150px" src="{{figures.picture}}" alt="{{figures.nom}}">
+          <p class="card-text">{{figures.univers}}</p><p class="card-text">{{figures.price}}$</p>
+          <button (click)= "removeFigure(figures.nom)"class="btn btn-primary">Remove from collection</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
