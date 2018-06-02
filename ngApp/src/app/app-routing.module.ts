@@ -14,45 +14,45 @@ import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
-    path : '',
-    redirectTo : '/figures',
-    pathMatch : 'full'
+    path: '',
+    redirectTo: '/figures',
+    pathMatch: 'full'
   },
   {
     path: 'figures',
-    component : FiguresComponent,
+    component: FiguresComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'newFigure',
-    component : NewFigureComponent,
+    component: NewFigureComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'myFigures',
-    component : MyFiguresComponent,
+    component: MyFiguresComponent,
     canActivate: [AuthGuard]
   },
   {
-  path: 'updateFigure',
-  component : UpdateFigureComponent,
-  canActivate: [AuthGuard]
-},
+    path: 'updateFigure',
+    component: UpdateFigureComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'collection',
-    component : CollectionnerComponent,
+    component: CollectionnerComponent,
   },
   {
     path: 'login',
-    component : LoginComponent
+    component: LoginComponent
   },
   {
     path: 'register',
-    component : RegisterComponent
+    component: RegisterComponent
   },
   {
     path: 'profil',
-    component : ProfilComponent
+    component: ProfilComponent
   }
 ];
 

@@ -1,5 +1,5 @@
 <div class="row pt-5">
-  <div class="col-md-6 mx-auto">
+  <div class="col-md-4 mx-auto">
     <div class="card rounded-0">
       <div class="card-header">
         <h3 class="mb-0">Profil</h3>
@@ -8,15 +8,17 @@
         <form class="card-body">
           <div class="form">
             <div class="form-group">
+              <i class="fas fa-user"></i>
               <label for="">Email</label>
-              <input [(ngModel)]="UserData.email" name = "email" type="text" class="form-control rounded-0" required>
+              <input [(ngModel)]="UserData.email" name="email" type="text" class="form-control rounded-0" required>
             </div>
             <div class="form-group">
+              <i class="fas fa-key"></i>
               <label for="">Password</label>
-              <input [(ngModel)]= "UserData.password" name = "password" type="password" class="form-control rounded-0" required>
+              <input [(ngModel)]="UserData.password" name="password" type="password" class="form-control rounded-0" required>
             </div>
-            <button (click)= "modifUser()" type="button" class="btn btn-success float-right">Modify</button>
-            <button (click)= "deleteUser()" type="button" class="btn btn-danger float-left">Delete</button>
+            <button (click)="modifUser()" type="button" class="btn btn-success float-right">Modify</button>
+            <button (click)="deleteUser()" type="button" class="btn btn-danger float-left">Delete</button>
           </div>
         </form>
       </div>

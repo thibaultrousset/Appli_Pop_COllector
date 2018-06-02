@@ -10,23 +10,26 @@ import { FiguresService } from "../figures.service";
 })
 export class NewFigureComponent implements OnInit {
 
-  constructor(private _auth: AuthService,private _figuresService: FiguresService,
+  constructor(private _auth: AuthService, private _figuresService: FiguresService,
     private _router: Router) { }
-  figureData={
-    "creator":""
+  figureData = {
+    "creator": ""
   }
 
-  newFigure () {
+  univers = ["Disney", "Marvel", "Lord of the rings"];
+
+  newFigure() {
     let creator = localStorage.getItem('id')
-    this.figureData.creator= creator;
+    this.figureData.creator = creator;
     this._figuresService.newFigure(this.figureData)
-    .subscribe(
-      res=>{
+      .subscribe(
+      res => {
         this._router.navigate(['/figures'])
-        console.log(res)},
+        console.log(res)
+      },
       err => console.log(err)
-    )
-    
+      )
+
   }
 
 

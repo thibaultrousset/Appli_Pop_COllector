@@ -13,21 +13,25 @@ export class UpdateFigureComponent implements OnInit {
     "figure_name": ""
   }
 
+  univers = ["Disney", "Marvel", "Lord of the rings"];
+
   constructor(private _figuresService: FiguresService,
     private _router: Router) { }
 
   ngOnInit() {
   }
 
-  updateFigure(){
+  updateFigure() {
     let figure_name = localStorage.getItem("figure_name")
     this.figureData.figure_name = figure_name;
     this._figuresService.updateFigure(this.figureData)
-    .subscribe(
-      res => {console.log(res),
-        this._router.navigate(['/myFigures'])},
+      .subscribe(
+      res => {
+        console.log(res),
+        this._router.navigate(['/myFigures'])
+      },
       err => console.log(err)
-    )
+      )
   }
 
 }

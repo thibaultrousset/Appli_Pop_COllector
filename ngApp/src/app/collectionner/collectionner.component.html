@@ -1,13 +1,19 @@
-<div class="row mt-5">
-    <div class="col-md-4 mb-3" *ngFor="let figures of collec">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">{{figures.nom}}</h5>
-          <img style="width: 150px" src="{{figures.picture}}" alt="{{figures.nom}}">
-          <p class="card-text">{{figures.univers}}</p><p class="card-text">{{figures.price}}$</p>
-          <button (click)= "removeFigure(figures.nom)"class="btn btn-primary">Remove from collection</button>
+<div class="col-12 p-0 m-0 ">
+  <div class="row col-11 mx-auto mt-5">
+    <div class="col-md-6 col-lg-6 col-xl-3 mb-3" *ngFor="let figures of collec">
+      <div class="card">
+        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}</h4>
+        <div class="container">
+          <img style="width: 270px" src="{{figures.picture}}" alt="{{figures.nom}}" class="image mx-auto">
         </div>
-
+        <div class="card-body text-center mb-0">
+          <p class="card-text">{{figures.univers}}</p>
+          <div class=" pl-4 row mx-auto">
+            <button (click)="removeFigure(figures.nom)" class="btn btn-outline-success col-5 text-center"> Remove</button>
+            <span style="color:green" class="d-block col-5 pt-2 p-0 "> {{figures.price}} $ </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>

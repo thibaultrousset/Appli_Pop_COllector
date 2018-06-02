@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient , HttpParams, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 
 @Injectable()
@@ -10,56 +10,56 @@ export class FiguresService {
   private _newFigureUrl = "http://localhost:3000/api/newFigure"
   private _myFiguresUrl = "http://localhost:3000/api/myFigures"
   private _updateFigureUrl = "http://localhost:3000/api/updateFigure"
-  figure : String
-  
+  figure: String
+
   constructor(private http: HttpClient) {
-    
+
   }
 
-  getFigures(univers){
-    return this.http.get<any>(this._figuresUrl+'/'+univers)
+  getFigures(univers) {
+    return this.http.get<any>(this._figuresUrl + '/' + univers)
   }
 
-  getMyFigures(id){
-    return this.http.get<any>(this._myFiguresUrl+'/'+id)
+  getMyFigures(id) {
+    return this.http.get<any>(this._myFiguresUrl + '/' + id)
   }
 
-  updateFigure(body){
-    return this.http.post<any>(this._updateFigureUrl,body)
+  updateFigure(body) {
+    return this.http.post<any>(this._updateFigureUrl, body)
   }
 
-  deleteFigure(figure, id){
-    return this.http.delete<any>(this._myFiguresUrl+'/'+figure+'/'+id )
+  deleteFigure(figure, id) {
+    return this.http.delete<any>(this._myFiguresUrl + '/' + figure + '/' + id)
   }
 
-  addFigure(figure,id){
+  addFigure(figure, id) {
     let body = {
       "figure": figure,
       "user_id": id
     }
-    return this.http.post<any>(this._figuresUrl,body)
+    return this.http.post<any>(this._figuresUrl, body)
   }
 
-  newFigure(figureData){
-    return this.http.post<any>(this._newFigureUrl,figureData)
+  newFigure(figureData) {
+    return this.http.post<any>(this._newFigureUrl, figureData)
   }
 
-  removeFigure(figure,id){
+  removeFigure(figure, id) {
     let body = {
       "figure": figure,
       "user_id": id
     }
-    return this.http.put<any>(this._collectionUrl,body)
+    return this.http.put<any>(this._collectionUrl, body)
   }
 
-  removeMyFigure(body){
-    
-    return this.http.put<any>(this._myFiguresUrl,body)
+  removeMyFigure(body) {
+
+    return this.http.put<any>(this._myFiguresUrl, body)
   }
 
-  getCollec(id){
-   
-    return this.http.get<any>(this._collectionUrl + '/' + id)
-    
+  getCollec(univers, id) {
+
+    return this.http.get<any>(this._collectionUrl + '/' + univers + '/' + id)
+
   }
 }

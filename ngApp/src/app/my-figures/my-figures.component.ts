@@ -12,49 +12,48 @@ export class MyFiguresComponent implements OnInit {
 
   loginUserData = {}
   figures = [];
-  collec= [];
+  collec = [];
   univers = "All"
   body = {
-    "figure":"",
-      "id": ""
+    "figure": "",
+    "id": ""
   }
-  constructor(private _auth: AuthService,private _figuresService: FiguresService,private _router: Router) {
-    
+  constructor(private _auth: AuthService, private _figuresService: FiguresService, private _router: Router) {
+
   }
 
   ngOnInit() {
     let id = localStorage.getItem('id')
     this._figuresService.getMyFigures(id)
-    .subscribe(
-      res=> this.figures = res,
-      err => console.log(err) 
-    )
+      .subscribe(
+      res => this.figures = res,
+      err => console.log(err)
+      )
   }
 
-  getFigureName(figure){
-    
+  getFigureName(figure) {
+
     localStorage.setItem("figure_name", figure);
   }
 
-  deleteFigure(figure){
+  deleteFigure(figure) {
     let id = localStorage.getItem('id');
-    this._figuresService.deleteFigure(figure,id)
-    .subscribe(
-      res=>{this._router.navigate(['/figures'])},
+    this._figuresService.deleteFigure(figure, id)
+      .subscribe(
+      res => { this._router.navigate(['/figures']) },
       err => console.log(err)
-    )
+      )
   }
 
-  removeMyFigure (figure){
-    let id=localStorage.getItem('id')
-    this.body.id=id;
+  removeMyFigure(figure) {
+    let id = localStorage.getItem('id')
+    this.body.id = id;
     this.body.figure = figure;
     this._figuresService.removeMyFigure(this.body)
-    .subscribe(
-      res=>{
-        this._router.navigate(['/figures'])},
-      err=>console.log("err")
-    )
+      .subscribe(
+      res => this._router.navigate(['/figures']),
+      err => console.log("err")
+      )
   }
-  
+
 }

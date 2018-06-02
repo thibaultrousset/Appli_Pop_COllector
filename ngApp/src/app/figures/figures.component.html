@@ -1,22 +1,32 @@
-<div class="row col-12">
-  <div class="col-2 pt-5">
-    <button id = "All" (click)= "getFigures($event)"class=" col-6 mx-auto my-3 btn btn-primary">All</button>
-    <button id = "Marvel" (click)= "getFigures($event)"class=" col-6 mx-auto my-3 btn btn-primary">Marvel</button>
-    <button id = "Lord of the rings" (click)= "getFigures($event)" class=" col-12 mx-auto my-3 btn btn-primary">Lord of the rings</button>
-    <button id = "Disney" (click)= "getFigures($event)"class=" col-6 mx-auto my-3 btn btn-primary">Disney</button>
-    
-  </div>
+<div class="row col-12 p-0 m-0 ">
 
-  <div class="row col-9 mx-auto mt-5">
-    <div class="col-md-4 mb-3" *ngFor="let figures of figures">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title" name = "name">{{figures.nom}}</h5>
-          <img style="width: 150px" src="{{figures.picture}}" alt="{{figures.nom}}">
-          <p class="card-text">{{figures.univers}}</p><p class="card-text">{{figures.price}}$</p>
-          <button (click)= "addFigure(figures.nom)"class="btn btn-primary">Add to collection</button>
+  <nav class="navbar-primary col-12 col-md-2 m-0 p-0">
+    <ul class="navbar-primary-menu">
+      <li>
+        <a (click)="getFigures($event)" id="All">Get All FIgures</a>
+        <a id="Marvel" (click)="getFigures($event)">Marvel</a>
+        <a id="Lord of the rings" (click)="getFigures($event)">Lord of the rings</a>
+        <a id="Disney" (click)="getFigures($event)">Disney</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="row col-11 col-sm-8 ml-5 mx-auto mt-5">
+    <div class="col-md-6 col-lg-6 col-xl-4 mb-3" *ngFor="let figures of figures">
+      <div class="card">
+        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}</h4>
+        <div class="container">
+          <img style="width: 270px" src="{{figures.picture}}" alt="{{figures.nom}}" class="image mx-auto">
+        </div>
+        <div class="card-body text-center mb-0">
+          <p class="card-text">{{figures.univers}}</p>
+          <div class="row mx-auto">
+            <button (click)="addFigure(figures.nom)" class="btn btn-outline-success col-5">Add</button>
+            <span style="color:green" class="d-block col-5 p-0 pt-2"> {{figures.price}} $ </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>

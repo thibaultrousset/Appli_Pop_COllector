@@ -12,38 +12,38 @@ export class AuthService {
 
 
 
- 
+
   constructor(private http: HttpClient,
-              private _router: Router) {
-              }
-  
+    private _router: Router) {
+  }
+
 
   registerUser(user) {
     return this.http.post<any>(this._registerUrl, user)
-    
-  } 
-  
-  loginUser(user) {
-    
-    return this.http.post<any>(this._loginUrl, user)
-  } 
 
-  loggedIn(){
+  }
+
+  loginUser(user) {
+
+    return this.http.post<any>(this._loginUrl, user)
+  }
+
+  loggedIn() {
     return !!localStorage.getItem('id')//!! asks true or false answer
   }
 
-  logoutUser(){
+  logoutUser() {
     localStorage.removeItem('id')
     localStorage.removeItem('collec')
     this._router.navigate(['/figures'])
   }
 
-  modifUser(user){
-    return this.http.post<any>(this._profilUrl,user)
+  modifUser(user) {
+    return this.http.post<any>(this._profilUrl, user)
   }
 
-  deleteUser(id){
+  deleteUser(id) {
     console.log(localStorage.getItem('id'));
-    return this.http.delete<any>(this._profilUrl+id)
+    return this.http.delete<any>(this._profilUrl + id)
   }
 }

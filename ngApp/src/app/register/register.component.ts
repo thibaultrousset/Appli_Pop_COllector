@@ -11,26 +11,25 @@ export class RegisterComponent implements OnInit {
 
 
   registerUserData = {}
-  
+
   constructor(private _auth: AuthService,
-              private _router: Router) {
-                
-              }
+    private _router: Router) {
+
+  }
 
   ngOnInit() {
   }
 
-  registerUser(){
+  registerUser() {
     this._auth.registerUser(this.registerUserData)
-    .subscribe(
-      res=>{
+      .subscribe(
+      res => {
         localStorage.setItem('id', res._id)
         this._router.navigate(['/figures'])
         console.log(res)
       },
-        
-      err=>console.log(err)
-    )
-  }
 
+      err => console.log(err)
+      )
+  }
 }

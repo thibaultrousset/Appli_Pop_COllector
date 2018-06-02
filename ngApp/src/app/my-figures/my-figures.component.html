@@ -1,17 +1,20 @@
-<div class="row col-12">
-  
-    <div class="row col-9 mx-auto mt-5">
-      <div class="col-md-4 mb-3" *ngFor="let figures of figures">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title" name = "name">{{figures.nom}}</h5>
-            <img style="width: 150px" src="{{figures.picture}}" alt="{{figures.nom}}">
-            <p class="card-text">{{figures.univers}}</p> <p class="card-text">{{figures.price}}$</p>
-            <button  (click)= "getFigureName(figures.nom)" routerLink = "/updateFigure" class="btn btn-primary">Update</button>
-            <button (click)= "removeMyFigure(figures.nom); deleteFigure(figure.nom) "class="btn btn-primary">Delete</button>
-          </div>
+<div class="col-12 p-0 m-0 ">
+  <div class="row col-11 ml-5 mx-auto mt-5">
+    <div class=" col-md-6 col-xl-4 mb-3" *ngFor="let figures of figures">
+      <div class="card">
+        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}</h4>
+        <div class="container">
+          <img style="width: 270px" src="{{figures.picture}}" alt="{{figures.nom}}" class="image mx-auto">
+        </div>
+        <div class="card-body text-center mb-0">
+          <p class="card-text">{{figures.univers}}</p>
+          <div class="pl-4 row mx-auto">
+              <button (click)="getFigureName(figures.nom)" routerLink="/updateFigure" class="btn btn-primary col-3 m-1">Update</button>
+              <button (click)="removeMyFigure(figures.nom)"  routerLink="/figures" class="btn btn-danger col_3 m-1">Delete</button>
+              <span style="color:green" class="d-block pt-2 p-0 col-5"> {{figures.price}} $ </span>
+            </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

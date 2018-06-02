@@ -11,39 +11,39 @@ import { AuthService } from '../auth.service';
 export class FiguresComponent implements OnInit {
 
   figures = [];
-  collec= [];
+  collec = [];
   univers = "All"
   constructor(private _auth: AuthService,
-              private _figuresService: FiguresService) {
-             }
+    private _figuresService: FiguresService) {
+  }
 
   ngOnInit() {
     let univers = this.univers
     this._figuresService.getFigures(this.univers)
-    .subscribe(
-      res=> this.figures = res,
-      err => console.log(err) 
-    )
+      .subscribe(
+      res => this.figures = res,
+      err => console.log(err)
+      )
   }
 
-  getFigures(event){
+  getFigures(event) {
     let univers = event.target.id;
-    
+
     this._figuresService.getFigures(univers)
-    .subscribe(
-      res=> this.figures = res,
-      err => console.log(err) 
-    )
+      .subscribe(
+      res => this.figures = res,
+      err => console.log(err)
+      )
   }
 
-  addFigure (figure){
-    let id=localStorage.getItem('id')
-    this._figuresService.addFigure(figure,id)
-    .subscribe(
-      res=>this.collec = res,
-      err=>console.log("err")
-    )
+  addFigure(figure) {
+    let id = localStorage.getItem('id')
+    this._figuresService.addFigure(figure, id)
+      .subscribe(
+      res => this.collec = res,
+      err => console.log("err")
+      )
   }
 
-  
+
 }
