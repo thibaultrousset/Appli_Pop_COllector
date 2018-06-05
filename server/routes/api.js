@@ -42,6 +42,7 @@ router.post('/register', (req, res) => {
     userData.email = userData.email.toString().toLowerCase();
     // I create a new User with the data sent with the user model I imported
     let user = new User(userData)
+    user.Usercollection = [];
     // I save it in the database
     user.save((error, registeredUser) => {
         if (error) {
