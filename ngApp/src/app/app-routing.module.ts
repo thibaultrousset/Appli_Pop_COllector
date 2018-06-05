@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'; //I can use the ngModel of angular
+import { Routes, RouterModule } from '@angular/router'; 
+
+// I import all the componants I use with routes
 import { FiguresComponent } from './figures/figures.component';
 import { CollectionnerComponent } from './collectionner/collectionner.component';
 import { LoginComponent } from './login/login.component';
@@ -9,19 +11,22 @@ import { NewFigureComponent } from './new-figure/new-figure.component';
 import { MyFiguresComponent } from './my-figures/my-figures.component';
 import { UpdateFigureComponent } from './update-figure/update-figure.component';
 
-
+// I import the auth gard to block the routing to none connected users
 import { AuthGuard } from './auth.guard';
 
+// I set the routings of my app
 const routes: Routes = [
   {
+    // on the root of the app go to the figures path
     path: '',
     redirectTo: '/figures',
     pathMatch: 'full'
   },
   {
+
+    // on the figures path get the figures componant
     path: 'figures',
     component: FiguresComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'newFigure',
@@ -41,6 +46,7 @@ const routes: Routes = [
   {
     path: 'collection',
     component: CollectionnerComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -52,7 +58,8 @@ const routes: Routes = [
   },
   {
     path: 'profil',
-    component: ProfilComponent
+    component: ProfilComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

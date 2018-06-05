@@ -10,14 +10,20 @@ import { FiguresService } from "../figures.service";
 })
 export class NewFigureComponent implements OnInit {
 
-  constructor(private _auth: AuthService, private _figuresService: FiguresService,
+  constructor(private _figuresService: FiguresService,
     private _router: Router) { }
+
+  // the object with the data I will send to database to create a new figure
+  // i set an empty parameter tha doesn't exist in the form of the html
   figureData = {
     "creator": ""
   }
 
+  // the univers available in the select
   univers = ["Disney", "Marvel", "Lord of the rings"];
 
+
+  // new figures doesn't belong to connected user but to its creator.
   newFigure() {
     let creator = localStorage.getItem('id')
     this.figureData.creator = creator;
@@ -29,7 +35,6 @@ export class NewFigureComponent implements OnInit {
       },
       err => console.log(err)
       )
-
   }
 
 

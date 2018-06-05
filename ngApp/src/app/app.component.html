@@ -1,3 +1,5 @@
+<!-- -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#"> POP Collector </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -7,14 +9,16 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-
+      <!-- router link call the componant of the path set in app routing -->
       <a class="nav-link" routerLink="/figures" routerLinkActive="active">Figures</a>
-      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/collection" routerLinkActive="">Collection</a>
+      <a class="nav-link" routerLink="/collection" routerLinkActive="">Collection</a>
+      <!-- if loggedIn() send back true thene show the nav link-->
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/newFigure" routerLinkActive="active">New Figure</a>
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/myFigures" routerLinkActive="active">My Figures</a>
 
     </ul>
     <ul class="navbar-nav">
+      <!-- if loggedIn() send back true thene DON'T  show the nav link-->
       <a class="nav-link grey" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="">Login</a>
       <a class="nav-link col" *ngIf="!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/profil" routerLinkActive="">Profil</a>

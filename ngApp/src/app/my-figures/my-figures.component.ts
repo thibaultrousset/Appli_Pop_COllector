@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FiguresService } from "../figures.service";
-import { AuthService } from '../auth.service';
 import { Router } from "@angular/router";
 
 @Component({
@@ -10,15 +9,13 @@ import { Router } from "@angular/router";
 })
 export class MyFiguresComponent implements OnInit {
 
-  loginUserData = {}
   figures = [];
-  collec = [];
-  univers = "All"
   body = {
     "figure": "",
     "id": ""
   }
-  constructor(private _auth: AuthService, private _figuresService: FiguresService, private _router: Router) {
+  constructor(private _figuresService: FiguresService,
+    private _router: Router) {
 
   }
 
@@ -31,20 +28,15 @@ export class MyFiguresComponent implements OnInit {
       )
   }
 
+  // get the name of the figures I clicked on
+  // the nme will be used for the update form
   getFigureName(figure) {
-
+    // put the figure name in the local storage
     localStorage.setItem("figure_name", figure);
   }
 
-  deleteFigure(figure) {
-    let id = localStorage.getItem('id');
-    this._figuresService.deleteFigure(figure, id)
-      .subscribe(
-      res => { this._router.navigate(['/figures']) },
-      err => console.log(err)
-      )
-  }
-
+  // get the figure name i clicked on , delete it from the database and 
+  // remove it from the connected user collection if it is in it
   removeMyFigure(figure) {
     let id = localStorage.getItem('id')
     this.body.id = id;

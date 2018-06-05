@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+//auth service import to use the http equests and function specifics to authentification
 import { AuthService } from '../auth.service';
 import { Router } from "@angular/router";
 
@@ -9,29 +11,35 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+
+  // object with the form values
   loginUserData = {}
+
+  // array with the user datas
   collectionneur = []
 
   constructor(private _auth: AuthService,
-              private _router: Router) { 
-              }
+    private _router: Router) {
+  }
 
   ngOnInit() {
   }
 
-  loginUser () {
+   // check if user exist
+   // sendback the user id
+  loginUser() {
     this._auth.loginUser(this.loginUserData)
-    .subscribe(
-      res=>{
+      .subscribe(
+      res => {
         localStorage.setItem('id', res._id)
-        localStorage.setItem('collec', res.Usercollection)
-        this.collectionneur=res
-        
+        this.collectionneur = res
+
         this._router.navigate(['/figures'])
-        console.log(res)},
+        console.log(res)
+      },
       err => console.log(err)
-    )
-    
+      )
+
   }
 
 }

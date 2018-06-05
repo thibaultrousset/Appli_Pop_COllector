@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-
+// object will get the values set in the html
   registerUserData = {}
 
   constructor(private _auth: AuthService,
@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  // send the datas of the html to create a new user
+  // sendback the user id
   registerUser() {
     this._auth.registerUser(this.registerUserData)
       .subscribe(

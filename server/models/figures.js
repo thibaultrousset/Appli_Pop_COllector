@@ -1,17 +1,17 @@
-// La variable mongoose nous permettra d'utiliser les fonctionnalités du module mongoose.
+// the  variable mongoose let me use mongoose functionnalitys.
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-//var db = require('/home/rousset/workspace/projet/API_NodeJS_Express/back/app');
-
+// mongoose shema declaration
+// I create a new mongoose shema figure that has severals prorieties that defines it
 var figureSchema = new Schema({
     nom: String,
     univers: String,
     picture: String,
     price: Number,
+    // user id that created it
     creator: String
 });
 
+// I export my model so that i can use it outside this file
 module.exports = mongoose.model('Figure', figureSchema);
-
-//module.exports = Piscine;

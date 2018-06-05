@@ -10,9 +10,11 @@ import { Router } from "@angular/router";
 })
 export class ProfilComponent implements OnInit {
 
+// object will get the values set in the html
+// id isn't set in the html so I create it before
   UserData = {
+    "id": ""
   }
-  collectionneur
 
   constructor(private _auth: AuthService,
     private _router: Router,
@@ -21,15 +23,11 @@ export class ProfilComponent implements OnInit {
   ngOnInit() {
   }
 
+  // send new data to update the connected user datas
   modifUser() {
-
     let id = localStorage.getItem('id');
-    let body = {
-      "UserData": this.UserData,
-      "user_id": id
-    }
-
-    this._auth.modifUser(body)
+    this.UserData.id = id;
+    this._auth.modifUser(this.UserData)
       .subscribe(
       res => {
         this._router.navigate(['/collection'])
@@ -40,6 +38,7 @@ export class ProfilComponent implements OnInit {
 
   }
 
+  // remove the user from data base
   deleteUser() {
     let id = localStorage.getItem('id');
 
