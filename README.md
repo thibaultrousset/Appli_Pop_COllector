@@ -1,6 +1,6 @@
 # Appli_Pop_COllector
 
-To run : 
+To run on FIREFOX ONLY : 
 1) clear the local storage
 2) download project
 3) unzip the project
