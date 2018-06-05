@@ -24,7 +24,7 @@ mongoose.connect(db, err => {
     if (err) {
         console.error('Error !' + err)
     } else {
-        console.log('Connected to mangodb')
+        console.log('Connected to mongodb')
     }
 })
 
