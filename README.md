@@ -14,11 +14,3 @@ To run on FIREFOX ONLY :
 11) run the commend cd ngApp
 12) run the command npm install
 13) run the command ng serve --o
-
-To import the jsons of my database, open a terminal and run the command
-
-   mongoimport -h ds137600.mlab.com:37600 -d api_piscines -c <collection> -u <user> -p <password> --file <input file>
-
-   collection must be named: users, figures
-    user: your username
-    password: your password
