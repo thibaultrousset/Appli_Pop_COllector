@@ -42,7 +42,6 @@ router.post('/register', (req, res) => {
     userData.email = userData.email.toString().toLowerCase();
     // I create a new User with the data sent with the user model I imported
     let user = new User(userData)
-    user.Usercollection = [];
     // I save it in the database
     user.save((error, registeredUser) => {
         if (error) {
@@ -277,10 +276,10 @@ router.get('/collection/:id', (req, res, next) => {
         // I go through the user collection 
         for (let i = 0; i < user.Usercollection.length; i++) {
             // For each collection item I foud the figure that maches the figure id in my collection
-            Figure.findById(Usercollection[i], (error, figure) => {
+            Figure.findById(user.Usercollection[i], (error, figure) => {
                 // And I push each figure found in the array set above
                 sendCollec.push(figure);
-                if (sendCollec.length >= Usercollection.length) {
+                if (sendCollec.length >= user.Usercollection.length) {
                     // If I got through all the user collection I send back to the client the figure array
                     res.send(sendCollec);
                 }
