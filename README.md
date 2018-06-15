@@ -17,14 +17,13 @@ YOu need to have Firefox as your browser
 *  Unzip the project if downloaded
 *  Open a terminal
 *  Go to the project root
-*  Run the command cd server
-*  Run the command npm install
-*  Run the command node server
+*  Run the command `cd server`
+*  Run the command `npm install`
+*  Run the command `node server`
 *  Open an other terminal
 *  Got to the project root
-*  Run the commend cd ngApp
-*  Run the command npm install
-*  Run the command ng serve --o
+*  Run the commend `cd ngApp`
+*  Run the command `npm install`
 
 
 ## Deployment
@@ -32,8 +31,8 @@ YOu need to have Firefox as your browser
 * Clear the local storage of firefox
 * Open a terminal
 * Go to the project root
-* Run the commend cd ngApp
-* Run the command ng serve --o
+* Run the commend `cd ngApp`
+* Run the command `ng serve --o`
 
 
 ## Built With
