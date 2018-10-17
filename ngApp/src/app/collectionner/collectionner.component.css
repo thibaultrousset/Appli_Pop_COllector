@@ -9,18 +9,18 @@
     -ms-transform: translate(-50%, -50%);
     text-align: center;
   }
-  
+
   .container:hover .image {
     opacity: 0.3;
   }
-  
+
   .container:hover .middle {
     opacity: 1;
   }
-  
+
   p,h1,h2,h4,h3{
     font-family: "Montserrat Sans MS", cursive, sans-serif;}
-  
+
     img {
       height: auto;
       max-width: 100%;
@@ -113,9 +113,9 @@
       line-height: 1.5;
       margin-bottom: 1.25rem;
     }
-    
-  
-    /* make sidebar nav vertical */ 
+
+
+    /* make sidebar nav vertical */
   @media (min-width: 768px) {
       .sidebar-nav .navbar .navbar-collapse {
         padding: 0;
@@ -153,11 +153,11 @@
     .navbar-primary.collapsed .glyphicon {
         font-size: 22px;
       }
-      
+
       .navbar-primary.collapsed .nav-label {
         display: none;
       }
-      
+
       .btn-expand-collapse {
           position: absolute;
           display: block;
@@ -170,23 +170,23 @@
           font-size: 20px;
           text-align: center;
       }
-      
+
       .btn-expand-collapse:hover,
       .btn-expand-collapse:focus {
           background-color: #222;
           color: white;
       }
-      
+
       .btn-expand-collapse:active {
           background-color: #111;
       }
-      
+
       .navbar-primary-menu,
       .navbar-primary-menu li {
         margin:0; padding:0;
         list-style: none;
       }
-      
+
       .navbar-primary-menu li a {
         display: block;
         padding: 10px 18px;
@@ -194,27 +194,27 @@
         border-bottom:solid 1px #444;
         color: #ccc;
       }
-      
+
       .navbar-primary-menu li a:hover {
         background-color: #000;
         text-decoration: none;
         color: white;
       }
-      
+
       .navbar-primary-menu li a .glyphicon {
         margin-right: 6px;
       }
-      
+
       .navbar-primary-menu li a:hover .glyphicon {
         color: orchid;
       }
-      
+
       .main-content {
         margin-top: 60px;
         margin-left: 200px;
         padding: 20px;
       }
-      
+
       .collapsed + .main-content {
         margin-left: 60px;
       }

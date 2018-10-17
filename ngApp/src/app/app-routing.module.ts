@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'; //I can use the ngModel of angular
-import { Routes, RouterModule } from '@angular/router'; 
+import { NgModule } from '@angular/core'; // I can use the ngModel of angular
+import { Routes, RouterModule } from '@angular/router';
 
 // I import all the componants I use with routes
 import { FiguresComponent } from './figures/figures.component';

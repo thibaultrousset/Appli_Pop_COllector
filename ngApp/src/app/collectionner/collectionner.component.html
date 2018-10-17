@@ -1,8 +1,10 @@
 <div class="col-12 p-0 m-0 ">
   <div class="row col-11 mx-auto mt-5">
+    <!-- I do a loop on the collec tab a got from the get request-->
     <div class="col-md-6 col-lg-6 col-xl-3 mb-3" *ngFor="let figures of collec">
       <div class="card">
-        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}</h4>
+        <!-- for each figure of the collec tab I write this html-->
+        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}<!--the name of the object with his parapeter name--></h4>
         <div class="container row">
           <img style="width: 270px; height: 200px" src="{{figures.picture}}" alt="{{figures.nom}}" class="image mx-auto">
         </div>
