@@ -20,9 +20,14 @@
         </div>
         <div class="card-body text-center mb-0">
           <p class="card-text">{{figures.univers}}</p>
-          <div class="row mx-auto">
-            <button (click)="addFigure(figures.nom)" class="btn btn-outline-success col-5">Add</button>
-            <span style="color:green" class="d-block col-5 p-0 pt-2"> {{figures.price}} $ </span>
+          <div class="row d-flex justify-content-around">
+            <button (click)="addFigure(figures.nom)" class="btn btn-outline-success col-5">
+              <img src="https://png.icons8.com/ios-glyphs/30/000000/trophy.png">
+            </button>
+            <button (click)="addFigureWish(figures.nom)" class="btn btn-outline-success col-5">
+                <img src="https://png.icons8.com/ios/30/000000/wish-list-filled.png">
+            </button>
+            <!-- <span style="color:green" class="d-block col-5 p-0 pt-2"> {{figures.price}} $ </span> -->
           </div>
         </div>
       </div>

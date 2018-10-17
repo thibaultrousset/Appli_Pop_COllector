@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // I import all the componants I use with routes
 import { FiguresComponent } from './figures/figures.component';
 import { CollectionnerComponent } from './collectionner/collectionner.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'collection',
     component: CollectionnerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'wish-list',
+    component: WishListComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -19,7 +19,8 @@ export class FiguresComponent implements OnInit {
 
   body = {
     'figure': '',
-    'id': ''
+    'id': '',
+    'collec': ''
   };
 
   constructor(private _figuresService: FiguresService) {
@@ -56,6 +57,7 @@ export class FiguresComponent implements OnInit {
     const id = localStorage.getItem('id');
     this.body.id = id;
     this.body.figure = figure;
+    this.body.collec = 'collec';
     this._figuresService.addFigure(this.body)
       .subscribe(
         res => console.log(res),
@@ -63,5 +65,16 @@ export class FiguresComponent implements OnInit {
       );
   }
 
+  addFigureWish(figure) {
+    const id = localStorage.getItem('id');
+    this.body.id = id;
+    this.body.figure = figure;
+    this.body.collec = 'wish';
+    this._figuresService.addFigureWish(this.body)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
+  }
 
 }

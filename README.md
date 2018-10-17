@@ -1,5 +1,6 @@
 # Appli_Pop_COllector
 
+<<<<<<< HEAD
 To run on FIREFOX ONLY :
 1) clear the local storage
 2) download project
@@ -17,6 +18,8 @@ To run on FIREFOX ONLY :
 
 # Project Title
 
+=======
+>>>>>>> 36d1f47fbc17661775cd5207da57d91bf6faa36c
 A web app to manage your FUNKO POP collections
 
 ## Getting Started
@@ -34,6 +37,7 @@ YOu need to have Firefox as your browser
 *  Unzip the project if downloaded
 *  Open a terminal
 *  Go to the project root
+<<<<<<< HEAD
 *  Run the command cd server
 *  Run the command npm install
 *  Run the command node server
@@ -42,6 +46,15 @@ YOu need to have Firefox as your browser
 *  Run the commend cd ngApp
 *  Run the command npm install
 *  Run the command ng serve --o
+=======
+*  Run the command `cd server`
+*  Run the command `npm install`
+*  Run the command `node server`
+*  Open an other terminal
+*  Got to the project root
+*  Run the commend `cd ngApp`
+*  Run the command `npm install`
+>>>>>>> 36d1f47fbc17661775cd5207da57d91bf6faa36c
 
 
 ## Deployment
@@ -49,8 +62,13 @@ YOu need to have Firefox as your browser
 * Clear the local storage of firefox
 * Open a terminal
 * Go to the project root
+<<<<<<< HEAD
 * Run the commend cd ngApp
 * Run the command ng serve --o
+=======
+* Run the commend `cd ngApp`
+* Run the command `ng serve --o`
+>>>>>>> 36d1f47fbc17661775cd5207da57d91bf6faa36c
 
 
 ## Built With

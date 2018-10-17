@@ -11,6 +11,10 @@ const userSchema = new Schema({
     Usercollection: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Figure'
+    }],
+    UserWishList: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Figure'
     }]
 })
 module.exports = mongoose.model('User', userSchema, 'users')

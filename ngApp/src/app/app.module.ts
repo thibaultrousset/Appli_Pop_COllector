@@ -16,6 +16,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { NewFigureComponent } from './new-figure/new-figure.component';
 import { UpdateFigureComponent } from './update-figure/update-figure.component';
 import { MyFiguresComponent } from './my-figures/my-figures.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 
 
@@ -30,6 +31,7 @@ import { MyFiguresComponent } from './my-figures/my-figures.component';
     NewFigureComponent,
     UpdateFigureComponent,
     MyFiguresComponent,
+    WishListComponent,
   ],
   imports: [
     BrowserModule,

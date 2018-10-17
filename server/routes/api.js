@@ -2,7 +2,7 @@
 // I wiil use express
 const express = require('express');
 
-// I use express to use the router 
+// I use express to use the router
 const router = express.Router();
 
 // I import my user model
@@ -91,7 +91,7 @@ router.get('/figures/:univers', (req, res) => {
             res.json(figures);
         });
     } else {
-        // If the univers isn't "All" I find the figures that has the univers send in the url 
+        // If the univers isn't "All" I find the figures that has the univers send in the url
         Figure.find({ univers: univers }, (err, figures) => {
             if (err) {
                 res.send(err);
@@ -117,32 +117,69 @@ router.get('/myFigures/:id', (req, res) => {
 })
 
 // If I get a post request from the figures url I do that
+// router.post('/figures', (req, res) => {
+//     // I get the connected user id sent in the body
+    
+
+// })
+
+
+// If I get a post request from the figures url I do that
 router.post('/figures', (req, res) => {
-    // I get the connected user id sent in the body
-    let id = req.body.id;
-    // I found the user with the id sent in parameter
-    User.findById(id, (err, user) => {
-        if (err) {
-            res.send(err);
-        }
-        // I found the figure that has the name sent in parameter
-        Figure.findOne({ nom: req.body.figure }, (error, figure) => {
-            if (error) {
-                console.error('Error !')
-            } else {
-                // If I found it I push it in the collection of the user found above
-                user.Usercollection.push(figure)
-                // I save the changes in my database
-                user.save(function (err) {
-                    if (err) {
-                        res.send(err);
-                    }
-                    // Si tout est ok
-                    res.json({ message: 'Figure added to user collection' });
-                });
+
+    if (req.body.collec == 'wish') {
+        // I get the connected user id sent in the body
+        let id = req.body.id;
+        // I found the user with the id sent in parameter
+        User.findById(id, (err, user) => {
+            if (err) {
+                res.send("toto");
             }
+            // I found the figure that has the name sent in parameter
+            Figure.findOne({ nom: req.body.figure }, (error, figure) => {
+                if (error) {
+                    console.error('Error !')
+                } else {
+                    // If I found it I push it in the collection of the user found above
+                    user.UserWishList.push(figure)
+                    // I save the changes in my database
+                    user.save(function (err) {
+                        if (err) {
+                            res.send("toto");
+                        }
+                        // Si tout est ok
+                        res.json({ message: 'Figure added to user WishList' });
+                    });
+                }
+            });
         });
-    });
+
+    } else if (req.body.collec == 'collec')  {
+        let id = req.body.id;
+        // I found the user with the id sent in parameter
+        User.findById(id, (err, user) => {
+            if (err) {
+                res.send("toto");
+            }
+            // I found the figure that has the name sent in parameter
+            Figure.findOne({ nom: req.body.figure }, (error, figure) => {
+                if (error) {
+                    console.error('Error !')
+                } else {
+                    // If I found it I push it in the collection of the user found above
+                    //user.Usercollection.push(figure)
+                    // I save the changes in my database
+                    user.save(function (err) {
+                        if (err) {
+                            res.send("toto");
+                        }
+                        // Si tout est ok
+                        res.json({ message: 'Figure added to user collection' });
+                    });
+                }
+            });
+        });
+    }
 
 })
 
@@ -173,6 +210,42 @@ router.put('/collection', (req, res) => {
                             }
                             // Si tout est ok
                             res.json({ message: 'Figure removed from collection' });
+                        });
+                    }
+                }
+            };
+        });
+    });
+})
+
+
+// If I get a put request from the wish-list url I do that
+
+router.put('/wish-list', (req, res) => {
+    // I get the connected user id sent in the body
+    let id = req.body.id;
+    // I found the user with the id sent in parameter
+    User.findById(id, (err, user) => {
+        if (err) {
+            res.send(err);
+        }
+        // I found the figure that has the name sent in parameter
+        Figure.findOne({ nom: req.body.figure }, (error, figure) => {
+            if (error) {
+                console.error('Error !')
+            } else {
+                // I go through the collection of the user found above
+                for (let i = 0; i < user.UserWishList.length; i++) {
+                    // If the figure id match the user WishList item I remove it from the WishList array
+                    if (user.UserWishList[i].toString() == figure._id.toString()) {
+                        user.UserWishList.splice(i, 1)
+                        // I save the changes in my database
+                        user.save(function (err) {
+                            if (err) {
+                                res.send(err);
+                            }
+                            // Si tout est ok
+                            res.json({ message: 'Figure removed from WishList' });
                         });
                     }
                 }
@@ -246,7 +319,7 @@ router.post('/updateFigure', (req, res) => {
         if (err) {
             console.error('Error !' + err)
         } else {
-            // I reset the values of the figure with the parameters I sent 
+            // I reset the values of the figure with the parameters I sent
             figure.nom = figureData.nom;
             figure.picture = figureData.picture;
             figure.univers = figureData.univers;
@@ -273,13 +346,38 @@ router.get('/collection/:id', (req, res, next) => {
         if (err) {
             res.send(err);
         }
-        // I go through the user collection 
+        // I go through the user collection
         for (let i = 0; i < user.Usercollection.length; i++) {
             // For each collection item I foud the figure that maches the figure id in my collection
             Figure.findById(user.Usercollection[i], (error, figure) => {
                 // And I push each figure found in the array set above
                 sendCollec.push(figure);
                 if (sendCollec.length >= user.Usercollection.length) {
+                    // If I got through all the user collection I send back to the client the figure array
+                    res.send(sendCollec);
+                }
+            });
+        }
+    });
+})
+
+
+// If I get a get request from the collection url with an id in the url I do that
+router.get('/wish-list/:id', (req, res, next) => {
+    // I set an array that will have the figures of the user collection
+    let sendCollec = [];
+    // I found the user that has the id send in the url
+    User.findById(req.params.id, function (err, user) {
+        if (err) {
+            res.send(err);
+        }
+        // I go through the user collection
+        for (let i = 0; i < user.UserWishList.length; i++) {
+            // For each collection item I foud the figure that maches the figure id in my collection
+            Figure.findById(user.UserWishList[i], (error, figure) => {
+                // And I push each figure found in the array set above
+                sendCollec.push(figure);
+                if (sendCollec.length >= user.UserWishList.length) {
                     // If I got through all the user collection I send back to the client the figure array
                     res.send(sendCollec);
                 }
@@ -324,7 +422,6 @@ router.delete('/profil/:id', (req, res) => {
             res.status(200).send("User was deleted succefsfuly ");
         });
     })
-    
 })
 
 

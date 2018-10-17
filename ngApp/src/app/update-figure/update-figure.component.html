@@ -16,10 +16,10 @@
               <input [(ngModel)]="figureData.picture" name="picture" type="text" class="form-control rounded-0" required>
             </div>
             <div class="form-group">
-                <label for="Univers">Univers</label>
-                <select class="form-control" id="Univers" required [(ngModel)]="figureData.univers" name="univers" #power="ngModel">
-                  <option *ngFor="let univer of univers" [value]="univer">{{univer}} </option>
-                </select>  
+              <label for="Univers">Univers</label>
+              <select class="form-control" id="Univers" required [(ngModel)]="figureData.univers" name="univers" #power="ngModel">
+                <option *ngFor="let univer of univers" [value]="univer">{{univer}} </option>
+              </select>
             </div>
             <div class="form-group">
               <label for="">Price</label>

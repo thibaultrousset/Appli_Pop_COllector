@@ -7,6 +7,7 @@ export class FiguresService {
 
   private _figuresUrl = 'http://localhost:3000/api/figures';
   private _collectionUrl = 'http://localhost:3000/api/collection';
+  private _wishListUrl = 'http://localhost:3000/api/wish-list';
   private _newFigureUrl = 'http://localhost:3000/api/newFigure';
   private _myFiguresUrl = 'http://localhost:3000/api/myFigures';
   private _updateFigureUrl = 'http://localhost:3000/api/updateFigure';
@@ -26,16 +27,30 @@ export class FiguresService {
     return this.http.post<any>(this._figuresUrl, body);
   }
 
+   // post httprequest that send the user id and  figure name to database on figures url
+   addFigureWish(body) {
+    return this.http.post<any>(this._figuresUrl, body);
+  }
+
 
   // get httprequest that send the user id to database on collection url
   getCollec(id) {
     return this.http.get<any>(this._collectionUrl + '/' + id);
   }
 
+   // get httprequest that send the user id to database on wish-list url
+   getWishList(id) {
+    return this.http.get<any>(this._wishListUrl + '/' + id);
+  }
+
 
   // put httprequest that send the user id and a figure name to database on collection url
   removeFigure(body) {
     return this.http.put<any>(this._collectionUrl, body);
+  }
+
+  removeFigureWish(body) {
+    return this.http.put<any>(this._wishListUrl, body);
   }
 
 

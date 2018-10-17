@@ -1,0 +1,23 @@
+<div class="col-12 p-0 m-0 ">
+  <div class="row col-11 mx-auto mt-5">
+    <!-- I do a loop on the collec tab a got from the get request-->
+    <div class="col-md-6 col-lg-6 col-xl-3 mb-3" *ngFor="let figure of collec">
+      <div class="card">
+        <!-- for each figure of the collec tab I write this html-->
+        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figure.nom}}
+          <!--the name of the object with his parapeter name-->
+        </h4>
+        <div class="container row">
+          <img style="width: 270px; height: 200px" src="{{figure.picture}}" alt="{{figure.nom}}" class="image mx-auto">
+        </div>
+        <div class="card-body text-center mb-0">
+          <p class="card-text">{{figure.univers}}</p>
+          <div class=" pl-4 row mx-auto">
+            <button (click)="removeFigureWish(figure.nom)" class="btn btn-outline-success col-5 text-center"> Remove</button>
+            <span style="color:green" class="d-block col-5 pt-2 p-0 "> {{figure.price}} $ </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
