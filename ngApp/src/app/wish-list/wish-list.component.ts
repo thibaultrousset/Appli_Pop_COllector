@@ -23,7 +23,8 @@ export class WishListComponent implements OnInit {
 
   body = {
     'figure': '',
-    'id': ''
+    'id': '',
+    'collec': ''
   };
 
   // default value of the univers filter
@@ -58,11 +59,23 @@ export class WishListComponent implements OnInit {
     this._figuresService.removeFigureWish(this.body)
       .subscribe(
         res => {
-          this.collec = res,
+          this.collec = res;
             // go to the figures page if the figure is removed from the collection
             this._router.navigate(['/figures']);
         },
         err => console.log('err')
+      );
+  }
+
+  addFigure2(figure) {
+    const id = localStorage.getItem('id');
+    this.body.id = id;
+    this.body.figure = figure;
+    this.body.collec = 'collec';
+    this._figuresService.addFigure2(this.body)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
       );
   }
 }

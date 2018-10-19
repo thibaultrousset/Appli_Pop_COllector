@@ -1,6 +1,6 @@
-<div class="row col-12 p-0 m-0 ">
+<div class="row col-12 p-0 m-0 " style="heigth:100vh">
 
-  <nav class="navbar-primary col-12 col-md-2 m-0 p-0">
+  <nav class=" navbar-primary col-12 col-md-2 m-0 p-0">
     <ul class="navbar-primary-menu">
       <li>
         <a (click)="getFigures($event)" id="All">Get All FIgures</a>
@@ -11,27 +11,55 @@
     </ul>
   </nav>
 
-  <div class="row col-11 col-sm-8 ml-5 mx-auto mt-5">
-    <div class="col-md-6 col-lg-6 col-xl-4 mb-3" *ngFor="let figures of figures">
-      <div class="card">
-        <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}</h4>
-        <div class="container row">
-          <img style="width: 270px ; height: 200px" src="{{figures.picture}}" alt="{{figures.nom}}" class="image mx-auto">
-        </div>
-        <div class="card-body text-center mb-0">
-          <p class="card-text">{{figures.univers}}</p>
-          <div class="row d-flex justify-content-around">
-            <button (click)="addFigure(figures.nom)" class="btn btn-outline-success col-5">
-              <img src="https://png.icons8.com/ios-glyphs/30/000000/trophy.png">
-            </button>
-            <button (click)="addFigureWish(figures.nom)" class="btn btn-outline-success col-5">
-                <img src="https://png.icons8.com/ios/30/000000/wish-list-filled.png">
-            </button>
-            <!-- <span style="color:green" class="d-block col-5 p-0 pt-2"> {{figures.price}} $ </span> -->
+
+  <div class="content row col-12 col-sm-8 mt-5 " style="margin-left:25%">
+
+      <div class="col-md-6 col-lg-6 col-xl-4 mb-3" *ngFor="let figures of pagedItems">
+
+        <div class="card">
+
+          <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}</h4>
+          <div class="container row">
+            <img style="width: 270px ; height: 200px" src="{{figures.picture}}" alt="{{figures.nom}}" class="image mx-auto">
+          </div>
+          <div class="card-body text-center mb-0">
+            <p class="card-text">{{figures.univers}}</p>
+
+            <div class="row d-flex justify-content-around">
+              <button (click)="addFigure(figures.nom)" class="btn btn-outline-success col-5" [disabled]="_authService.loggedIn()==false">
+                <img src="https://png.icons8.com/ios-glyphs/30/000000/trophy.png">
+              </button>
+              <button (click)="addFigureWish(figures.nom)" class="btn btn-outline-success col-5" [disabled]="_authService.loggedIn()==false">
+                  <img src="https://png.icons8.com/ios/30/000000/wish-list-filled.png">
+              </button>
+              <!-- <span style="color:green" class="d-block col-5 p-0 pt-2"> {{figures.price}} $ </span> -->
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+   <!-- pager -->
+      <ul class="row col-12  ml-5 mx-auto mt-5 pagination" *ngIf="pager.pages && pager.pages.length">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+      </ul>
+            
+</div>
+  
 
 </div>
+

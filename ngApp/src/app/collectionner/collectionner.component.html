@@ -1,7 +1,19 @@
-<div class="col-12 p-0 m-0 ">
-  <div class="row col-11 mx-auto mt-5">
+<div class="row col-12 p-0 m-0 " style="heigth:100vh">
+    
+    <nav class="navbar-primary col-12 col-md-2 m-0 p-0">
+    <ul class="navbar-primary-menu">
+      <li>
+        <a id="All" (click)="getCollec($event)">Get All FIgures</a>
+        <a id="Marvel" (click)="getCollec($event)">Marvel</a>
+        <a id="Lord of the rings" (click)="getCollec($event)">Lord of the rings</a>
+        <a id="Disney" (click)="getCollec($event)">Disney</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="row col-12 col-sm-8 mt-5 " style="margin-left:25%">
     <!-- I do a loop on the collec tab a got from the get request-->
-    <div class="col-md-6 col-lg-6 col-xl-3 mb-3" *ngFor="let figures of collec">
+    <div class="col-md-6 col-lg-6 col-xl-4 mb-3" *ngFor="let figures of collec">
       <div class="card">
         <!-- for each figure of the collec tab I write this html-->
         <h4 class="card-title text-center p-1 bg-primary text-white" name="name">{{figures.nom}}
@@ -12,8 +24,10 @@
         </div>
         <div class="card-body text-center mb-0">
           <p class="card-text">{{figures.univers}}</p>
-          <div class=" pl-4 row mx-auto">
-            <button (click)="removeFigure(figures.nom)" class="btn btn-outline-success col-5 text-center"> Remove</button>
+          <div class="row d-flex justify-content-around">
+            <button (click)="removeFigure(figures.nom)" class="btn btn-outline-success col-5 text-center">
+                <img src="https://png.icons8.com/metro/30/000000/trash.png">
+            </button>
             <span style="color:green" class="d-block col-5 pt-2 p-0 "> {{figures.price}} $ </span>
           </div>
         </div>

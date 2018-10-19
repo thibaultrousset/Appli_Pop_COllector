@@ -10,12 +10,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <!-- router link call the componant of the path set in app routing -->
-      <a class="nav-link" routerLink="/figures" routerLinkActive="active">Figures</a>
+      <a class="nav-link" routerLink="/figures" routerLinkActive="">Figures</a>
       <a class="nav-link" routerLink="/collection" routerLinkActive="">Collection</a>
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/wish-list" routerLinkActive="">Wish List</a>
       <!-- if loggedIn() send back true thene show the nav link-->
-      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/newFigure" routerLinkActive="active">New Figure</a>
-      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/myFigures" routerLinkActive="active">My Figures</a>
+      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/newFigure" routerLinkActive="">New Figure</a>
+      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/myFigures" routerLinkActive="">My Figures</a>
 
     </ul>
     <ul class="navbar-nav">

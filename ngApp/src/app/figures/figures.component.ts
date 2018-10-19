@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FiguresService } from '../figures.service';
+import { AuthService } from '../auth.service';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 
+import { PagerService } from '../pager-service.service'
 
 
 @Component({
@@ -17,13 +22,22 @@ export class FiguresComponent implements OnInit {
   // default value of the filter univers
   univers = 'All';
 
+  // array of all items to be paged
+     allItems=[];
+ 
+    // pager object
+    pager: any = {};
+ 
+    // paged items
+    pagedItems=[];
+
   body = {
     'figure': '',
     'id': '',
     'collec': ''
   };
 
-  constructor(private _figuresService: FiguresService) {
+  constructor(private _figuresService: FiguresService,private _authService: AuthService) {
   }
 
 
@@ -32,10 +46,24 @@ export class FiguresComponent implements OnInit {
     const univers = this.univers;
     this._figuresService.getFigures(univers)
       .subscribe(
-        res => this.figures = res,
+        data => {
+                // set items to json response
+                this.allItems = data,
+ 
+                // initialize to page 1
+                this.setPage(1);
+            },
         err => console.log(err)
       );
   }
+
+  setPage(page: number) {
+        // get pager object from service
+        this.pager = this._figuresService.getPager(this.allItems.length, page);
+ 
+        // get current page of items
+        this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    }
 
 
 
@@ -46,7 +74,13 @@ export class FiguresComponent implements OnInit {
 
     this._figuresService.getFigures(univers)
       .subscribe(
-        res => this.figures = res,
+        data => {
+                // set items to json response
+                this.allItems = data,
+ 
+                // initialize to page 1
+                this.setPage(1);
+            },
         err => console.log(err)
       );
   }

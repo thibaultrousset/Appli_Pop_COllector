@@ -21,11 +21,22 @@ export class CollectionnerComponent implements OnInit {
   // array  that will get back the response of the get request. I will display it with an ngFor in the html
   collec = [];
 
+  univers = 'All';
+
+  // array of all items to be paged
+     allItems=[];
+ 
+    // pager object
+    pager: any = {};
+ 
+    // paged items
+    pagedItems=[];
+
   body = {
     'figure': '',
-    'id': ''
+    'id': '',
+    'collec': ''
   };
-
   // default value of the univers filter
 
 
@@ -38,16 +49,36 @@ export class CollectionnerComponent implements OnInit {
 
   // On the init of the page I get the collection of the user connected
   ngOnInit() {
+    const univers = this.univers;
     // get the id of local storage wich is the id of connected user
     const id = localStorage.getItem('id');
     // use the figure service and call the 'getCollec' function tha send a get http request with id in parameter
-    this._figuresService.getCollec(id)
+    this._figuresService.getCollec(id,univers)
       .subscribe(
         // put in the collec array the response wich is all the figures of the user connected
         res => this.collec = res,
         err => console.log(err)
       );
   }
+
+  getCollec(event){
+    const univers = event.target.id;
+    const id = localStorage.getItem('id');
+
+    this._figuresService.getCollec(id,univers)
+      .subscribe(
+        data => {
+                // set items to json response
+                this.collec = data;
+ 
+                // initialize to page 1
+                
+            },
+        err => console.log(err)
+      );
+  }
+
+  
 
 
   // on the click of the button I remove the figure from the user collection
@@ -59,8 +90,7 @@ export class CollectionnerComponent implements OnInit {
       .subscribe(
         res => {
           this.collec = res,
-            // go to the figures page if the figure is removed from the collection
-            this._router.navigate(['/figures']);
+          this._router.navigate(['/figures']);
         },
         err => console.log('err')
       );

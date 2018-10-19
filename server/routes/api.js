@@ -116,13 +116,39 @@ router.get('/myFigures/:id', (req, res) => {
     });
 })
 
-// If I get a post request from the figures url I do that
-// router.post('/figures', (req, res) => {
-//     // I get the connected user id sent in the body
-    
 
-// })
+router.post('/wish-list', (req, res) => {
+    let id = req.body.id;
+    // I found the user with the id sent in parameter
+    User.findById(id, (err, user) => {
+        if (err) {
+            res.send("toto");
+        }
+        // I found the figure that has the name sent in parameter
+        Figure.findOne({ nom: req.body.figure }, (error, figure) => {
+            if (error) {
+                console.error('Error !')
+            } else {
+                 if (user.Usercollection.indexOf(figure._id.toString())==-1){
+                    // If I found it I push it in the collection of the user found above
+                    user.Usercollection.push(figure._id.toString());
+                    user.UserWishList.splice(user.UserWishList.indexOf(figure._id.toString()), 1)
+                   
+                    // I save the changes in my database
+                    user.save(function (err) {
+                        if (err) {
+                            res.send("toto");
+                        }
+                        // Si tout est ok
+                        res.json({ message: 'Figure added to user collection' });
+                    });
+                 }
+                
+            }
+        });
+    });
 
+})
 
 // If I get a post request from the figures url I do that
 router.post('/figures', (req, res) => {
@@ -140,8 +166,13 @@ router.post('/figures', (req, res) => {
                 if (error) {
                     console.error('Error !')
                 } else {
-                    // If I found it I push it in the collection of the user found above
-                    user.UserWishList.push(figure)
+                    if (user.UserWishList.indexOf(figure._id.toString())==-1)   {
+                      // If I found it I push it in the collection of the user found above
+                    user.UserWishList.push(figure._id.toString())
+                    if (user.Usercollection.indexOf(figure._id.toString())!=-1) {
+                        user.Usercollection.splice(user.Usercollection.indexOf(figure._id.toString()), 1)
+                    }
+                    
                     // I save the changes in my database
                     user.save(function (err) {
                         if (err) {
@@ -149,12 +180,15 @@ router.post('/figures', (req, res) => {
                         }
                         // Si tout est ok
                         res.json({ message: 'Figure added to user WishList' });
-                    });
+                    });  
+                    }
+                    
                 }
             });
         });
 
-    } else if (req.body.collec == 'collec')  {
+    }
+    else if (req.body.collec == 'collec') {
         let id = req.body.id;
         // I found the user with the id sent in parameter
         User.findById(id, (err, user) => {
@@ -166,16 +200,19 @@ router.post('/figures', (req, res) => {
                 if (error) {
                     console.error('Error !')
                 } else {
-                    // If I found it I push it in the collection of the user found above
-                    //user.Usercollection.push(figure)
-                    // I save the changes in my database
-                    user.save(function (err) {
-                        if (err) {
-                            res.send("toto");
-                        }
-                        // Si tout est ok
-                        res.json({ message: 'Figure added to user collection' });
-                    });
+                     if (user.Usercollection.indexOf(figure._id.toString())==-1){
+                        // If I found it I push it in the collection of the user found above
+                        user.Usercollection.push(figure._id.toString())
+                        user.UserWishList.splice(user.UserWishList.indexOf(figure._id.toString()), 1)
+                        // I save the changes in my database
+                        user.save(function (err) {
+                            if (err) {
+                                res.send("toto");
+                            }
+                            // Si tout est ok
+                            res.json({ message: 'Figure added to user collection' });
+                        });
+                    }
                 }
             });
         });
@@ -199,21 +236,16 @@ router.put('/collection', (req, res) => {
                 console.error('Error !')
             } else {
                 // I go through the collection of the user found above
-                for (let i = 0; i < user.Usercollection.length; i++) {
-                    // If the figure id match the user collection item I remove it from the collection array
-                    if (user.Usercollection[i].toString() == figure._id.toString()) {
-                        user.Usercollection.splice(i, 1)
+                user.Usercollection.splice(user.Usercollection.indexOf(figure._id.toString()), 1)
                         // I save the changes in my database
-                        user.save(function (err) {
-                            if (err) {
-                                res.send(err);
-                            }
+                        user.save(function () {
+                            
                             // Si tout est ok
                             res.json({ message: 'Figure removed from collection' });
                         });
-                    }
-                }
-            };
+                    
+                
+            }
         });
     });
 })
@@ -235,20 +267,16 @@ router.put('/wish-list', (req, res) => {
                 console.error('Error !')
             } else {
                 // I go through the collection of the user found above
-                for (let i = 0; i < user.UserWishList.length; i++) {
-                    // If the figure id match the user WishList item I remove it from the WishList array
-                    if (user.UserWishList[i].toString() == figure._id.toString()) {
-                        user.UserWishList.splice(i, 1)
+                user.UserWishList.splice(user.UserWishList.indexOf(figure._id.toString()), 1)
+                        
                         // I save the changes in my database
-                        user.save(function (err) {
-                            if (err) {
-                                res.send(err);
-                            }
+                        user.save(function () {
+                           
                             // Si tout est ok
                             res.json({ message: 'Figure removed from WishList' });
                         });
-                    }
-                }
+                    
+                
             };
         });
     });
@@ -338,25 +366,45 @@ router.post('/updateFigure', (req, res) => {
 
 
 // If I get a get request from the collection url with an id in the url I do that
-router.get('/collection/:id', (req, res, next) => {
+router.get('/collection/:id/:univers', (req, res, next) => {
     // I set an array that will have the figures of the user collection
     let sendCollec = [];
+    let id=req.params.id;
+    let univers = req.params.univers;
+  
     // I found the user that has the id send in the url
-    User.findById(req.params.id, function (err, user) {
+    User.findById(id, function (err, user) {
         if (err) {
             res.send(err);
         }
+        // I test if the univers is All to get all the figures of database
+        if (univers === "All") {
         // I go through the user collection
-        for (let i = 0; i < user.Usercollection.length; i++) {
-            // For each collection item I foud the figure that maches the figure id in my collection
-            Figure.findById(user.Usercollection[i], (error, figure) => {
-                // And I push each figure found in the array set above
-                sendCollec.push(figure);
-                if (sendCollec.length >= user.Usercollection.length) {
-                    // If I got through all the user collection I send back to the client the figure array
-                    res.send(sendCollec);
-                }
-            });
+            for (let i = 0; i < user.Usercollection.length; i++) {
+                // For each collection item I foud the figure that maches the figure id in my collection
+                Figure.findById(user.Usercollection[i], (error, figure) => {
+                    // And I push each figure found in the array set above
+                    sendCollec.push(figure);
+                    if (sendCollec.length >= user.Usercollection.length) {
+                        // If I got through all the user collection I send back to the client the figure array
+                        res.send(sendCollec);
+                    }
+                });
+            }
+        } else {
+            // If the univers isn't "All" I find the figures that has the univers send in the url
+            for (let i = 0; i < user.Usercollection.length; i++) {
+                // For each collection item I foud the figure that maches the figure id in my collection
+                Figure.findOne({ _id: user.Usercollection[i],univers:univers}, (error, figure) => {
+                    // And I push each figure found in the array set above
+                    if (figure!=null) {
+                        sendCollec.push(figure);
+                    }
+                    if (i==user.Usercollection.length-1) {
+                        res.send(sendCollec);
+                    }
+                });
+            }
         }
     });
 })

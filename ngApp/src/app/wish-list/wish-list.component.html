@@ -13,8 +13,12 @@
         <div class="card-body text-center mb-0">
           <p class="card-text">{{figure.univers}}</p>
           <div class=" pl-4 row mx-auto">
-            <button (click)="removeFigureWish(figure.nom)" class="btn btn-outline-success col-5 text-center"> Remove</button>
-            <span style="color:green" class="d-block col-5 pt-2 p-0 "> {{figure.price}} $ </span>
+            <button (click)="removeFigureWish(figure.nom)" class="btn btn-outline-success col-5 text-center">
+                <img src="https://png.icons8.com/metro/30/000000/trash.png">
+            </button>
+            <button (click)="addFigure2(figure.nom);removeFigureWish(figure.nom)" class="btn btn-outline-success col-5">
+                <img src="https://png.icons8.com/ios-glyphs/30/000000/trophy.png">
+            </button>
           </div>
         </div>
       </div>
